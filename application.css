@@ -17,6 +17,7 @@ h1 {
 table {
   margin: auto;
   margin-top: 30px;
+  margin-bottom: 140px;
   background: #BAAC9E;
   border-spacing: 10px 10px;
   border-radius: 10px;
@@ -34,6 +35,10 @@ td {
   margin: 10px;
 }
 
+#buttons-container {
+  display: none;
+}
+
 .class0 { background: #CDBFB2; color: transparent; }
 .class2 { background: #EEE4DA; color: #776D64; }
 .class4 { background: #ECE0C8; color: #776D64; }
@@ -47,3 +52,9 @@ td {
 .class1024 { background: #E3BA14; }
 .class2048 { background: #E3BA14; }
 .class4096 { background: #3E3933; }
+
+@media only screen and (max-device-width: 480px) {
+  #buttons-container {
+    display: block;
+  }
+}

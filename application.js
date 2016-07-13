@@ -11,6 +11,8 @@ $(document).ready(function() {
   g = new Game;
   g.populateDom();
 
+  // regular controls
+
   $(document).on('keyup',function(e){
     if(e.which==38) {
       console.log("up");
@@ -28,13 +30,30 @@ $(document).ready(function() {
       console.log("left");
       g.eliminate_left();
     };
-    if (g.currentBoard.includes(0) && !g.currentBoard.compare(g.lastBoard)) {
-      g.spawnBlock();
-      g.populateDom();
-      for (var i = 0; i < 16; i++) {
-        g.lastBoard[i] = g.currentBoard[i];
-      };
-    };
+    g.update();
+  });
+
+  // phone controls
+
+  $('#up-arrow').on('click', function(){
+    console.log("up");
+    g.eliminate_up();
+    g.update();
+  });
+  $('#left-arrow').on('click', function(){
+    console.log("left");
+    g.eliminate_left();
+    g.update();
+  });
+  $('#down-arrow').on('click', function(){
+    console.log("down");
+    g.eliminate_down();
+    g.update();
+  });
+  $('#right-arrow').on('click', function(){
+    console.log("right");
+    g.eliminate_right();
+    g.update();
   });
 
   function Game() {
@@ -53,6 +72,16 @@ $(document).ready(function() {
     }
     return result;
   }
+
+  Game.prototype.update = function() {
+    if (g.currentBoard.includes(0) && !g.currentBoard.compare(g.lastBoard)) {
+      g.spawnBlock();
+      g.populateDom();
+      for (var i = 0; i < 16; i++) {
+        g.lastBoard[i] = g.currentBoard[i];
+      };
+    };
+  };
 
   Game.prototype.spawnBlock = function() {
     board = this.currentBoard;
