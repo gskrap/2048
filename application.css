@@ -1,11 +1,25 @@
 html {
   text-align: center;
+  background: #FAF8EF;
+  font-family: Helvetica;
+}
+
+h1 {
+  font-size: 60px;
+  font-family: "Lobster";
+}
+
+#byline {
+  margin-top: -54px;
+  margin-bottom: 40px;
 }
 
 table {
-  border: 1px solid black;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 30px;
+  background: #BAAC9E;
+  border-spacing: 10px 10px;
+  border-radius: 10px;
 }
 
 td {
@@ -14,4 +28,22 @@ td {
   border: 1px solid black;
   text-align: center;
   font-size: 40px;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  margin: 10px;
 }
+
+.class0 { background: #CDBFB2; color: transparent; }
+.class2 { background: #EEE4DA; color: #776D64; }
+.class4 { background: #ECE0C8; color: #776D64; }
+.class8 { background: #EEB07C; }
+.class16 { background: #F69463; }
+.class32 { background: #EB7B59; }
+.class64 { background: #F75D3D; }
+.class128 { background: #EDCE71; }
+.class256 { background: #ECCD5D; }
+.class512 { background: #FAC857; }
+.class1024 { background: #E3BA14; }
+.class2048 { background: #E3BA14; }
+.class4096 { background: #3E3933; }

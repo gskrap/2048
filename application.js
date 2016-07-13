@@ -2,7 +2,9 @@ $(document).ready(function() {
 
   Game.prototype.populateDom = function() {
     for (var i = 0; i < 16; i++) {
+      $("#"+String(i)).removeClass()
       $("#"+String(i)).html(this.currentBoard[i])
+      $("#"+String(i)).addClass("class"+String(this.currentBoard[i]))
     }
   }
 
@@ -16,12 +18,15 @@ $(document).ready(function() {
     };
     if(e.which==39) {
       console.log("right");
+      g.eliminate_right();
     };
     if(e.which==40) {
       console.log("down");
+      g.eliminate_down();
     };
     if(e.which==37) {
       console.log("left");
+      g.eliminate_left();
     };
     if (g.currentBoard.includes(0) && !g.currentBoard.compare(g.lastBoard)) {
       g.spawnBlock();
@@ -69,6 +74,7 @@ $(document).ready(function() {
     this.clearUp();
     this.clearUp();
     this.moveUp();
+    this.clearUp();
   }
 
   Game.prototype.clearUp = function() {
@@ -84,6 +90,90 @@ $(document).ready(function() {
     for (var i = 0; i < 16; i++) {
       for (var j = 0; j < 16; j++) {
         if ((j % 4 == i % 4) && ((j/4)-(i/4) == -1) && this.currentBoard[i] == this.currentBoard[j]) {
+          this.currentBoard.splice(j, 1, (this.currentBoard[j] * 2));
+          this.currentBoard.splice(i, 1, 0);
+        }
+      }
+    }
+  }
+
+  Game.prototype.eliminate_down = function() {
+    this.clearDown();
+    this.clearDown();
+    this.clearDown();
+    this.moveDown();
+    this.clearDown();
+  }
+
+  Game.prototype.clearDown = function() {
+    for (var i = 0; i < 16; i++) {
+      if (Math.floor(i/4) > 0 && (this.currentBoard[i] == 0) && (this.currentBoard[i-4] != 0)) {
+        this.currentBoard.splice(i, 1, this.currentBoard[i-4])
+        this.currentBoard.splice((i-4), 1, 0)
+      }
+    }
+  }
+
+  Game.prototype.moveDown = function() {
+    for (var i = 0; i < 16; i++) {
+      for (var j = 0; j < 16; j++) {
+        if ((j % 4 == i % 4) && ((j/4)-(i/4) == 1) && this.currentBoard[i] == this.currentBoard[j]) {
+          this.currentBoard.splice(j, 1, (this.currentBoard[j] * 2));
+          this.currentBoard.splice(i, 1, 0);
+        }
+      }
+    }
+  }
+
+  Game.prototype.eliminate_left = function() {
+    this.clearLeft();
+    this.clearLeft();
+    this.clearLeft();
+    this.moveLeft();
+    this.clearLeft();
+  }
+
+  Game.prototype.clearLeft = function() {
+    for (var i = 0; i < 16; i++) {
+      if ((i % 4 < 3) && (this.currentBoard[i] == 0) && (this.currentBoard[i+1] != 0)) {
+        this.currentBoard.splice(i, 1, this.currentBoard[i+1])
+        this.currentBoard.splice((i+1), 1, 0)
+      }
+    }
+  }
+
+  Game.prototype.moveLeft = function() {
+    for (var i = 0; i < 16; i++) {
+      for (var j = 0; j < 16; j++) {
+        if ((Math.floor(j/4) - Math.floor(i/4) == 0) && ((j % 4) - (i % 4) == -1) && (this.currentBoard[i] == this.currentBoard[j])) {
+          this.currentBoard.splice(j, 1, (this.currentBoard[j] * 2));
+          this.currentBoard.splice(i, 1, 0);
+        }
+      }
+    }
+  }
+
+  Game.prototype.eliminate_right = function() {
+    this.clearRight();
+    this.clearRight();
+    this.clearRight();
+    this.moveRight();
+    this.clearRight();
+  }
+
+  Game.prototype.clearRight = function() {
+    for (var i = 0; i < 16; i++) {
+      if ((i % 4 > 0) && (this.currentBoard[i] == 0) && (this.currentBoard[i-1] != 0)) {
+        this.currentBoard.splice(i, 1, this.currentBoard[i-1])
+        this.currentBoard.splice((i-1), 1, 0)
+      }
+    }
+  }
+
+  Game.prototype.moveRight = function() {
+    for (var i = 0; i < 16; i++) {
+      for (var j = 0; j < 16; j++) {
+        if ((Math.floor(j/4) - Math.floor(i/4) == 0) && ((j % 4) - (i % 4) == 1) && (this.currentBoard[i] == this.currentBoard[j])) {
           this.currentBoard.splice(j, 1, (this.currentBoard[j] * 2));
           this.currentBoard.splice(i, 1, 0);
         }
