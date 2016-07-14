@@ -57,10 +57,15 @@ td {
   table {
     width: 900px;
     height: 900px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
   }
 
   #buttons-container {
     display: block;
+    margin-bottom: 300px;
+  }
+
+  .button {
+    width: 220px;
   }
 }
