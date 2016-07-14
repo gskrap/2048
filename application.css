@@ -54,6 +54,12 @@ td {
 .class4096 { background: #3E3933; }
 
 @media only screen and (max-device-width: 480px) {
+  table {
+    width: 900px;
+    height: 900px;
+    margin-bottom: 100px;
+  }
+
   #buttons-container {
     display: block;
   }
